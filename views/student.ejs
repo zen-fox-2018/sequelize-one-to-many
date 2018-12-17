@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>All Students</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+  <br>
+  <h1 align="center">Students Data</h1>
+  <h3 align="center"><a href="/students/add">add student</a></h3> <br>
+  <div class="w-50 container">
+    <table class ="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach( a => { %>
+        <tr>
+          <td><%= a.id %></td>    
+          <td><%= a.firstName %></td>
+          <td><%= a.lastName %></td>
+          <td><%= a.email %></td>
+          <td>
+            <a href="/students/<%= a.id%>/add-subject"><button class="btn btn-success" type="button" name="addSubject" >Add Subject</button></a>
+          </td>
+          <td>
+            <form action="/students" method="POST">
+            <a href="/students/edit/<%= a.id%>"><button class="btn btn-warning" type="button" name="edit">Edit</button></a>
+            <button class="btn btn-danger" type="submit" name="delete" onclick="return confirm('Are you sure?')" value="<%= a.id %>">Delete</button>
+          </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
