@@ -57,12 +57,12 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
-        <li class="active"><a href="/teachers">Teachers</a></li>
+        <li><a href="/teachers">Teachers</a></li>
         <li><a href="/subjects">Subjects</a></li>
-        <li><a href="/students">Students</a></li>
+        <li class="active"><a href="/students">Students</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      
+     
       </ul>
     </div>
   </div>
@@ -76,28 +76,27 @@
       <p><a href="#"></a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1>Teacher Form</h1>
+      <h1>Add Subject to Student </h1>
     
 
-<form action="/teachers/add" method="POST">
-    First name:<br>
-    <input type="text" name="firstName">
+<form action="/students/<%= tempId %>/add-subject" method="POST">
+    First name: 
+    <label><%= student.firstName %> </label>
     <br>
-    Last name:<br>
-    <input type="text" name="lastName">
+    Last name: 
+    <label><%= student.lastName %> </label>
     <br>
-    Email:<br>
-    <input type="text" name="email">
+    Email: 
+    <label> <%= student.email %> </label>
     <br>
     Subject:<br>
     <select name="SubjectId" >
-      <option selected='selected' value="0">Subject</option>
       <% subject.forEach(dataSubject => { %>
         <option value="<%= dataSubject.id %>"> <%= dataSubject.subjectName %></option>
       <% })%>
     </select>
     <br><br>
-    <input type="submit" value="Submit" >
+    <input type="submit" value="Add Subject" onclick="return confirm('Are you sure to enroll?')">
   </form> 
   
     </div>
@@ -111,7 +110,6 @@
     </div>
   </div>
 </div>
-
 <footer class="container-fluid text-center">
   <p>Schools</p>
 </footer>

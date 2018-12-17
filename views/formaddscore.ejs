@@ -57,8 +57,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
-        <li class="active"><a href="/teachers">Teachers</a></li>
-        <li><a href="/subjects">Subjects</a></li>
+        <li><a href="/teachers">Teachers</a></li>
+        <li class="active"><a href="/subjects">Subjects</a></li>
         <li><a href="/students">Students</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -76,26 +76,12 @@
       <p><a href="#"></a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1>Teacher Form</h1>
+      <h1>Score Form</h1>
     
 
-<form action="/teachers/add" method="POST">
-    First name:<br>
-    <input type="text" name="firstName">
-    <br>
-    Last name:<br>
-    <input type="text" name="lastName">
-    <br>
-    Email:<br>
-    <input type="text" name="email">
-    <br>
-    Subject:<br>
-    <select name="SubjectId" >
-      <option selected='selected' value="0">Subject</option>
-      <% subject.forEach(dataSubject => { %>
-        <option value="<%= dataSubject.id %>"> <%= dataSubject.subjectName %></option>
-      <% })%>
-    </select>
+<form action="/subjects/<%= id %>/give-score" method="POST">
+    Score:<br>
+    <input type="text" name="score" value="">
     <br><br>
     <input type="submit" value="Submit" >
   </form> 

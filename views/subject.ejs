@@ -58,6 +58,7 @@
         <li><a href="/">Home</a></li>
         <li><a href="/teachers">Teachers</a></li>
         <li class="active"><a href="/subjects">Subjects</a></li>
+        <li><a href="/students">Students</a></li>
       </ul>
     
     </div>
@@ -79,6 +80,7 @@
           <th>Subject ID</th>
           <th>Subject Name</th>
           <th>Teachers</th>
+          <th>Actions</th>
           <th>Option</th>
         </tr>
         <tr>
@@ -94,6 +96,9 @@
                 <td><% DataSubject.Teachers.forEach(dataTeacher=> { %>
                    <%= `${dataTeacher.firstName} ${dataTeacher.lastName}`%> <br>
                 <% }) %></td>
+                <td>
+                  <a href="/subjects/<%= DataSubject.id %>/enrolled-students">Enrolled Students</a>
+                </td>
                 <td>
                     <a href="/subjects/edit/<%=DataSubject.id%>">Edit</a> | <a href="/subjects/delete/<%=DataSubject.id%>"  onclick="return confirm('Are you sure to delete data ?')">Delete</a>
                 </td>

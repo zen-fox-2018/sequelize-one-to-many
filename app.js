@@ -4,6 +4,7 @@ const port = 3000
 const Index = require('./routes/index')
 const Teacher = require('./routes/teacher')
 const Subject = require('./routes/subject')
+const Student = require('./routes/student')
 
 app.set("view engine", "ejs")
 
@@ -12,6 +13,7 @@ app.use(express.urlencoded({extended:false}))
 app.use('/', Index)
 app.use('/teachers', Teacher)
 app.use('/subjects', Subject)
+app.use('/students', Student)
 
 
 

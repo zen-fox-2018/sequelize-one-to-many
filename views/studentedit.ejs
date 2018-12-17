@@ -41,7 +41,7 @@
     }
   </style>
 </head>
-<body>
+<body onload="loadData()">
 
 
 <nav class="navbar navbar-inverse">
@@ -57,12 +57,12 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
-        <li class="active"><a href="/teachers">Teachers</a></li>
+        <li><a href="/teachers">Teachers</a></li>
         <li><a href="/subjects">Subjects</a></li>
-        <li><a href="/students">Students</a></li>
+        <li class="active"><a href="/students">Students</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      
+     
       </ul>
     </div>
   </div>
@@ -76,28 +76,20 @@
       <p><a href="#"></a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1>Teacher Form</h1>
+      <h1>Edit Student Form </h1>
     
 
-<form action="/teachers/add" method="POST">
+<form action="/students/edit/<%= tempId %>" method="POST">
     First name:<br>
-    <input type="text" name="firstName">
+    <input type="text" id="firstName" name="firstName" value="">
     <br>
     Last name:<br>
-    <input type="text" name="lastName">
+    <input type="text" id="lastName" name="lastName" value="">
     <br>
     Email:<br>
-    <input type="text" name="email">
-    <br>
-    Subject:<br>
-    <select name="SubjectId" >
-      <option selected='selected' value="0">Subject</option>
-      <% subject.forEach(dataSubject => { %>
-        <option value="<%= dataSubject.id %>"> <%= dataSubject.subjectName %></option>
-      <% })%>
-    </select>
+    <input type="text" id="email" name="email" value="">
     <br><br>
-    <input type="submit" value="Submit" >
+    <input type="submit" value="Submit" onclick="return confirm('Are you sure to update data ?')">
   </form> 
   
     </div>
@@ -111,7 +103,17 @@
     </div>
   </div>
 </div>
-
+<script>
+    
+  function loadData() {
+    let dataStudent ="<%= student %>"
+    if(dataStudent) {
+      document.getElementById("firstName").value = "<%= student.firstName %>"
+      document.getElementById("lastName").value = "<%= student.lastName %>"
+      document.getElementById("email").value = "<%= student.email %>"
+    }
+  }
+</script>
 <footer class="container-fluid text-center">
   <p>Schools</p>
 </footer>

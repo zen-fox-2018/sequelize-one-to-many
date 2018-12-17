@@ -63,4 +63,33 @@ router.get('/delete/:id', (req, res) => {
     .catch(err => res.redirect(`/subjects?err=${err}`))
 })
 
+router.get('/:id/enrolled-students', (req, res) => {
+    let tempId = req.params.id
+    Model.Subject.find({
+        include : [{model: Model.Student, required: false}], 
+        where :{id:tempId}
+    })
+    .then(dataSubject => {
+        // res.send(dataSubject)
+        res.render('subjectenrolled', {subject: dataSubject})
+    })
+    .catch(err => res.send(err))
+}) 
+
+router.get('/:id/give-score', (req, res)=> {
+    let id = req.params.id
+    res.render('formaddscore', {id:id})
+})
+
+router.post('/:id/give-score', (req,res)=> {
+    let info = `Success Add Score`
+    let id = req.params.id
+    let score = req.body.score
+    let objUpdateStudentSubject = {
+        score: score
+    }
+    Model.StudentSubject.update(objUpdateStudentSubject, {where:{id:id}})
+    .then(()=> res.redirect(`/subjects?info=${info}`))
+    .catch(err => res.redirect(`/subjects?err=${err}`))
+})
 module.exports = router
