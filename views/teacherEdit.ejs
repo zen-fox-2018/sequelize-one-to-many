@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Teachers Data</title>
+  <link rel="stylesheet" href="/public/input.css" type="text/css">
+</head>
+
+<body>
+
+  <form action="/teachers/edit/<%= editTeacher.id %>" method="post">
+
+    <div class="container">
+      <h2 style="text-align: center">Edit Teacher Data</h2>
+
+      <hr>
+      <input type="text" name="firstName" value="<%= editTeacher.firstName %>" required>
+      <input type="text" name="lastName" value="<%= editTeacher.lastName %>" required>
+      <input type="text" name="email" value="<%= editTeacher.email %>" required>
+      <select name="SubjectId">
+        <% editSubject.forEach(data => { %>
+        <% if (data.id === editTeacher.SubjectId) { %>
+        <option value="<%= data.id %>" selected>
+          <% } else { %>
+        <option value="<%= data.id %>">
+          <% } %>
+          <%= data.subjectName %>
+        </option>
+        </option>
+        <% }) %>
+      </select>
+      <hr>
+      <input class="add-btn" type="submit" value="Edit Teacher">
+
+    </div>
+  </form>
+
+</body>
+
+</html>
