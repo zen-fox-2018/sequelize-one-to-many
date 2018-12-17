@@ -28,11 +28,13 @@ router.get('/add', (req, res) => {
   Model.Subject
     .findAll()
     .then((subjects) => {
+      let teacher = "null";
       res.render('addTeacher', {
         title: 'FORM TEACHER',
         message: 'Insert data teacher',
         subjects : subjects,
-        teacher: "null"
+        teacher: "null",
+        msg : req.query.msg
       })
     })
 
@@ -60,7 +62,8 @@ router.get('/edit/:id', (req, res) => {
           lastName: req.query.lastName,
           email: req.query.email,
           SubjectId: req.query.SubjectId,
-          msg : req.query.msg
+          msg : req.query.msg,
+          action : req.quey.action
         }
         dataTeacher = newQuery;
       }
@@ -87,7 +90,11 @@ router.post('/add', (req, res) => {
 
   Model.Teacher.create(newTeacher)
     .then((data) => {
+      res.redirect('/teachers');
+    })
 
+    .catch((err) => {
+      res.redirect(`/teachers/add?msg=${err.errors[0].message}`);
     })
 })
 
@@ -107,11 +114,11 @@ router.post('/edit/:id', (req, res) => {
     }
   })
     .then((data) => {
-      res.send(data);
+      res.redirect(`/teachers`)
     })
 
     .catch((err) => {
-      res.redirect(`/teachers/edit/${updateTeacher.id}?id=${updateTeacher.id}&firstName=${updateTeacher.firstName}&lastName=${updateTeacher.lastName}&email=${updateTeacher.email}&SubjectId=${updateTeacher.SubjectId}&msg=${err.errors[0].message}`)
+      res.redirect(`/teachers/edit/${updateTeacher.id}?id=${updateTeacher.id}&firstName=${updateTeacher.firstName}&lastName=${updateTeacher.lastName}&email=${updateTeacher.email}&SubjectId=${updateTeacher.SubjectId}&msg=${err.errors[0].message}&action='edit'`)
       // res.send(err.errors[0].message)
     })
 })
