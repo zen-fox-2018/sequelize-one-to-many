@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1 align="center"><%= title%></h1>
+    <table align="center">
+      <tr>
+        <th> id </th>
+        <th> Subject Name </th>
+        <th> Teacher </th>
+      </tr>
+      <% dataSubject.forEach(itemSubject =>{ %>
+        <tr>
+          <td> <%= itemSubject.id%></td>
+          <td> <%= itemSubject.subject_name%></td>
+          <td>
+            <ol>
+              <% dataTeacher.forEach(itemTeacher =>{ %>
+                <% if(itemTeacher.SubjectId != null && itemSubject.id == itemTeacher.SubjectId){%>
+                <li> <%= itemTeacher.first_name%> </li>
+                <br>
+              <% }})%>
+          </ol>
+          </td>
+          <td>
+            <a href="/subjects/edit/<%- itemSubject.id%>" ><button align="center">edit</button></a> |
+            <a href="/subjects/delete/<%- itemSubject.id%>" ><button align="center">delete</button></a>
+          </td>
+        </tr>
+        <%})%>
+    </table>
+    <div align="center">
+      <a href="/subjects/add" ><button align="center">add subject</button></a>
+      <br>
+      <a href="/"><button type="button" name="button">back to home</button></a>
+    </div>
+  </body>
+</html>
