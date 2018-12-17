@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Subject Data </title>
+    
+    <style>
+        table {
+            width: 50%;
+        }
+        table, th, td {
+            text-align: center;
+            border-bottom: 2px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }        
+    </style>
+</head>
+<body>
+    <h1 style="text-align: left; color: green">All Subjects Data</h1>
+    <h3 style="text-align: left;"><a style="color: green;text-decoration: none" ><a href="/subjects/add">Add Subject Data</a></h3>
+    <h3 style="text-align: left;"><a style="color: green;text-decoration: none" ><a href="/teachers">go to Teacher Data</a></h3>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th >Subject Name</th>
+            <th>Teacher</th>
+            
+            <!-- <th>Options</th> -->
+        </tr>
+            <% data.forEach(allSubjectData => {%>
+            <tr>
+                <td><%= allSubjectData.id %></td>
+                <td><%= allSubjectData.subjectName %></td>
+                <td><ol >
+                <% allSubjectData.Teachers.forEach(singleTeacher => { %>
+                <li><%= `${singleTeacher.firstName} ${singleTeacher.lastName}` %></li>
+                <%  })   %>
+            </ol>
+            </td>
+                <!-- <td><p><a href= "/subjects/edit/<%=allSubjectData.id%>">Edit</a> | <a href = "/subjects/delete/<%=allSubjectData.id%>" onclick = "return confirm('Delete this subject?')">Delete</a></p></td> -->
+            </tr>
+            <%})%>
+    </table>
+</body>
+</html>

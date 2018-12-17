@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Teacher Data </title>
+    
+    <style>
+        table {
+            width: 90%;
+        }
+        table, th, td {
+            text-align: center;
+            border-bottom: 2px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }        
+    </style>
+</head>
+<body>
+    <h1 style="text-align: left; color: green">All Teachers Data</h1>
+    <h3 style="text-align: left;"><a style="color: green;text-decoration: none" ><a href="/teachers/add">Add Teacher Data</a></h3>
+    <table>
+        <tr>
+            <th>Nomor</th>
+            <th >First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <!-- <th>Subject</th> -->
+            <th>Subject Name</th>
+            <th>Options</th>
+        </tr>
+            <% data.forEach( (allTeacherData, indeks) => {%>
+            <tr>
+                <td><%= indeks+1 %></td>
+                <td><%= allTeacherData.firstName %></td>
+                <td><%= allTeacherData.lastName %></td>
+                <td><%= allTeacherData.email %></td>
+                <% if (!allTeacherData.Subject.subjectName){ %>
+                <td>unassigned</td>
+                <% } else {%>                
+                    <td><%= allTeacherData.Subject.subjectName %></td>
+                <% } %>
+                <!-- <td><%= allTeacherData.Subject.subjectName  %></td> -->
+                <td><p><a href= "/teachers/edit/<%=allTeacherData.id%>">Edit</a> | <a href = "/teachers/delete/<%=allTeacherData.id%>" onclick = "return confirm('Delete this teacher?')">Delete</a></p></td>
+            </tr>
+            <%})%>
+    </table>
+</body>
+</html>
