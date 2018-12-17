@@ -21,7 +21,7 @@
           <tr> 
            <td> <%= a.Student.firstName + ' ' + a.Student.lastName %> </td>
             <% if ( !a.score ) { %>
-             <td> Give Score </td>
+             <td> <a href="/subjects/<%=a.SubjectId%>/give-score">Give Score</a></td>
             <% } else { %>
              <td> <%= a.score %> </td>
           </tr>

@@ -8,8 +8,11 @@ module.exports = (sequelize, DataTypes) => {
       validate : {
         isEmail: true,
         isUnique: function( value ) {
+          console.log(this.id);
           return Student.findOne( { where : { email : value } } )
-            .then( student => {
+          .then( student => {
+            console.log('========',value)
+            console.log(student.id);
               if (student !== null && this.id != student.id) {
                 throw 'Email is already used'
               }

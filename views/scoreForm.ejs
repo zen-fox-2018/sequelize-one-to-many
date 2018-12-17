@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Form Score Subject</title>
+</head>
+<body>
+  <h1><%= name%></h1>
+  <ul>
+    <h1><% data.forEach( a => { %>
+      
+    <li><%= a.Student.firstName + ' ' + a.Student.lastName %></li>
+    
+    
+    <% })%>
+
+  </ul>
+  </h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      
+    </tbody>
+  </table>
+</body>
+</html>

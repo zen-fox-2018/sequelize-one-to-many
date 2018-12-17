@@ -75,6 +75,7 @@ router.get('/edit/:id', function ( req, res ) {
 
 router.post('/edit/:id', function ( req, res ) {
   let teacher = {
+    id : req.params.id,
     firstName : req.body.firstName,
     lastName : req.body.lastName,
     email : req.body.email,
