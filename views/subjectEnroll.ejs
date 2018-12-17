@@ -44,33 +44,33 @@
             </div>
             <div class="main-menu">
                 <div class="menu-inner">
-                  <nav>
-                      <ul class="metismenu" id="menu">
-                          <li>
-                              <a href="/" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
-                          </li>
-                          <li>
-                              <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i><span>Students</span></a>
-                              <ul class="collapse">
-                                  <li><a href="/students">Students</a></li>
-                                  <li><a href="/students/add">Add Students</a></li>
-                              </ul>
-                          </li>
-                          <li class="active">
-                              <a href="javascript:void(0)" aria-expanded="true"><i class="ti-briefcase"></i><span>Teachers</span></a>
-                              <ul class="collapse">
-                                  <li class="active"><a href="/teachers">Teachers</a></li>
-                                  <li><a href="/teachers/add">Add Teacher</a></li>
-                              </ul>
-                          </li>
-                          <li>
-                              <a href="javascript:void(0)" aria-expanded="true"><i class="ti-stats-up"></i><span>Subjects</span></a>
-                              <ul class="collapse">
-                                  <li><a href="/subjects">Subjects</a></li>
-                              </ul>
-                          </li>
-                      </ul>
-                  </nav>
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li>
+                                <a href="/" aria-expanded="true"><i class="ti-dashboard"></i><span>Home</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i><span>Students</span></a>
+                                <ul class="collapse">
+                                    <li><a href="/students">Students</a></li>
+                                    <li><a href="/students/add">Add Students</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-briefcase"></i><span>Teachers</span></a>
+                                <ul class="collapse">
+                                    <li><a href="/teachers">Teachers</a></li>
+                                    <li><a href="/teachers/add">Add Teacher</a></li>
+                                </ul>
+                            </li>
+                            <li class="active">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-stats-up"></i><span>Subjects</span></a>
+                                <ul class="collapse">
+                                    <li class="active"><a href="/subjects">Subjects</a></li>
+                                </ul>
+                            </li>
+                          </ul>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
                             <h4 class="page-title pull-left">KMSCHOOL</h4>
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="/">Home</a></li>
-                                <li><span><a href="/teacher">Teacher</a></span></li>
+                                <li><span><a href="/subject">Subjects</a></span></li>
                                 <li><span>Views</span></li>
                             </ul>
                         </div>
@@ -119,39 +119,29 @@
                                                 <thead class="text-uppercase bg-light">
                                                     <tr>
                                                         <th scope="col">ID</th>
-                                                        <th scope="col">First Name</th>
-                                                        <th scope="col">Last Name</th>
-                                                        <th scope="col">Email</th>
-                                                        <th scope="col">Subject</th>
-                                                        <th scope="col">Action</th>
+                                                        <th scope="col">Student Name</th>
+                                                        <th scope="col">Score</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                  <% if (teachers.length) { %>
-                                                    <% teachers.forEach( (teacher, i) => { %>
+                                                  <% if (subject.Students.length) { %>
+                                                    <% subject.Students.forEach( (students, i) => { %>
                                                       <tr>
                                                         <th scope="row"><%= i+1 %></th>
-                                                        <td><%= teacher.firstName %></td>
-                                                        <td><%= teacher.lastName %></td>
-                                                        <td><%= teacher.email %></td>
-                                                        <td><% if (teacher.SubjectId === null || teacher.SubjectId === 0) { %>
-                                                            <strong>unassigned</strong>
-                                                            <% } else { %>
-                                                              <%= teacher.Subject.subjectName %>
-                                                            <% } %>
-                                                        </td>
+                                                        <td><%= students.firstName %> <%= students.lastName %></td>
                                                         <td>
-                                                          <div class="btn-group mb-xl-3" role="group" aria-label="Basic example">
-                                                            <a href="/teachers/edit/<%= teacher.id %>" class="btn btn-warning">Edit</a>
-                                                            <a href="/teachers/delete/<%= teacher.id %>" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</a>
-                                                          </div>
+                                                          <% if(students.StudentSubject.score) { %>
+                                                            <%= students.StudentSubject.score %>
+                                                          <% } else { %>
+                                                            <a href="/subjects/<%= students.StudentSubject.id %>/give-score" class="btn btn-success">Give Score</a>
+                                                          <% } %>
                                                         </td>
                                                       </tr>
                                                     <% }) %>
                                                   <% } else { %>
-                                                    <tr>
-                                                      <td colspan="6">Empty</td>
-                                                    </tr>
+                                                        <tr>
+                                                          <td colspan="3">Empty</td>
+                                                        </tr>
                                                   <% } %>
                                                 </tbody>
                                             </table>

@@ -16,31 +16,22 @@ module.exports = {
       {
         firstName : 'Bambang',
         lastName : 'Suprapto',
-        email : 'bambangsuprapto@sekolah.id',
-        createdAt : new Date(),
-        updatedAt : new Date()
+        email : 'bambangsuprapto@sekolah.id'
       },
       {
         firstName : 'Rukmana',
         lastName : 'Fatmawati',
-        email : 'rukamanfatmawati@sekolah.id',
-        createdAt : new Date(),
-        updatedAt : new Date()
+        email : 'rukamanfatmawati@sekolah.id'
       },
       {
         firstName : 'Butet',
         lastName : 'Naiborhu',
-        email : 'butetnaiborhu@sekolah.id',
-        createdAt : new Date(),
-        updatedAt : new Date()
+        email : 'butetnaiborhu@sekolah.id'
       },
       {
         firstName : 'Yulius',
         lastName : 'Prawiranegara',
-        email : 'yuliusprawiranegara@sekolah.id',
-        SubjectId: 1,
-        createdAt : new Date(),
-        updatedAt : new Date()
+        email : 'yuliusprawiranegara@sekolah.id'
       }
 
   ], {});
