@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
     email : {type : DataTypes.STRING, 
       validate : {
+        isEmail: true,
         isUnique : function (value) {
            return Teacher
             .findOne({where: {email : value}})

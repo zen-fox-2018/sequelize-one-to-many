@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>School</title>
+</head>
+<body>
+  <div class="title">
+    <h1><%= subject.subjectName %></h1>
+    <h4><a href="/Subject">Return to Subject List</a></h4>
+  </div>
+  <div class="data">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+        <% subject.Students.forEach(function(student){%>
+        <tr>
+            <td><%= student.firsName %> <%= student.lastName %></td>
+            <% if (student.SubjectStudent.score == null) { %>
+              <td> <a href="/subject/<%= subject.id %>/give-score">Give Score</a> </td>
+          <% } else { %>
+            <td><%= student.SubjectStudent.score %></td>
+        <% } %>
+               
+        </tr>
+        <%})%>
+      </table>
+  </div>
+</body>
+</html>

@@ -15,6 +15,7 @@
             <th>Subject Name</th>
             <th>Teacher</th>
             <th>Option</th>
+            <th>Actions</th>
         </tr>
         <% subject.forEach(function(data){%>
         <tr>
@@ -26,10 +27,11 @@
                   <li> <%= teacher.firstName%> <%= teacher.lastName%></li>
                 <%})%>
               </ol>
-          </td>
+            </td>
+            <td><a href="/subject/<%= data.id%>/enrolled-students">Enroled Students</a></td>
               <td>
               <a href="/subject/edit/<%= data.id %>">Edit</a> | 
-              <a href="/subject/delete/<%= data.id%>"  onclick="return confirm('Delete this <%=route%>?')">Delete</a>
+              <a href="/subject/delete/<%= data.id%>"  onclick="return confirm('Delete this Student ?')">Delete</a>
               </td>      
         </tr>
         <%})%>

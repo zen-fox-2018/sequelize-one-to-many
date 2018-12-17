@@ -76,5 +76,36 @@ Model.Subject.update(teacher, {where: {id : req.params.id}})
 }) 
 })
 
+router.get('/:id/enrolled-students', function(req, res) {
+  let id = req.params.id
+  Model.Subject.findOne({where: {id : id}, include: [{model : Model.Student}]})
+  .then(function(subject) {
+    console.log(this)
+    // res.send(subject)
+    res.render('enrolled-student', {subject: subject})
+  })
+  .catch(function(err) {
+    res.send(err)
+  })
+})
+
+router.get('/:id/give-score', function(req, res) {
+  let id = req.params.id
+  res.render('score.ejs', {id : id})
+})
+
+router.post('/:id/give-score', function(req, res) {
+  let id = req.params.id
+  let score = {score : req.body.score}
+
+  Model.SubjectStudent.update(score, {where : {id : id}})
+    .then(function(row) {
+      res.redirect('/subject')
+    })
+    .catch(function(err) {
+      res.send(err)
+    })
+})
+
 
 module.exports = router
