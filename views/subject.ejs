@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>School</title>
+</head>
+<body>
+  <div class="title">
+    <h1>All Subject Data</h1>
+    <h2><a href="/Subject/add">Add Subject Data</a></h2>
+  </div>
+  <div class="data">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Subject Name</th>
+            <th>Teacher</th>
+            <th>Option</th>
+        </tr>
+        <% subject.forEach(function(data){%>
+        <tr>
+            <td><%= data.id %></td>
+            <td><%= data.subjectName %></td>
+            <td>
+              <ol>
+                <% data.Teachers.forEach(function(teacher) {%>
+                  <li> <%= teacher.firstName%> <%= teacher.lastName%></li>
+                <%})%>
+              </ol>
+          </td>
+              <td>
+              <a href="/subject/edit/<%= data.id %>">Edit</a> | 
+              <a href="/subject/delete/<%= data.id%>"  onclick="return confirm('Delete this <%=route%>?')">Delete</a>
+              </td>      
+        </tr>
+        <%})%>
+      </table>
+  </div>
+</body>
+</html>

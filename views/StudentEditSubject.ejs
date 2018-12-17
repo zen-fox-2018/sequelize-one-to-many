@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>School</title>
+</head>
+<body>
+  <div class="title">
+    <h1>ADD SUBJECT TO STUDENT</h1>
+  </div>
+  <div class="data">
+      <table border="1">
+          <tr>
+              <td>First Name</td>
+              <td><%= student.firsName%></td>
+          </tr>
+          <tr>
+              <td>Last Name</td>
+              <td><%= student.lastName%></td>
+          </tr>
+          <tr>
+              <td>Email</td>
+              <td><%= student.email %></td>
+          </tr>
+        </table>
+        <h4>Choose Subject</h4>
+        <form action="/student/<%= student.id %>/add-subject" method="POST">
+        <select name="subject">
+            <% subject.forEach(function(subject) {
+              if (student.Subjects.length !== 0) {
+                student.Subjects.forEach(function(selected) {
+                  if(subject.subjectName != selected.subjectName) { %>
+                    <option value="<%= subject.id%>"><%= subject.subjectName%></option>
+                <% }
+                })
+                } else { %>
+                  <option value="<%= subject.id%>"><%= subject.subjectName%></option>
+             <% }
+            }) %>
+        </select>
+        <br><br>
+        <input type="submit" value="ADD SUBEJCT">
+        </form>
+  </div>
+</body>
+</html>

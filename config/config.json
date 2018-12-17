@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": null,
+    "database": "association-onetomany",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

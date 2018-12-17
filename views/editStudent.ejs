@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>challenge</title>
+</head>
+<body>
+  <h1>EDIT STUDENT</h1>
+    <form action="/student/edit/<%= student.id %>" method="POST">
+        First name:<br>
+        <input type="text" name="firstname" value = "<%= student.firstName%>" >
+        <br>
+        Last name:<br>
+        <input type="text" name="lastname" value = "<%= student.lastName%>" >
+        <br>
+        email:<br>
+        <input type="text" name="email" value = "<%= student.email%>" >
+        <br><br>
+        <input type="submit" value="EDIT STUDENT">
+      </form>  
+</body>
+</html>

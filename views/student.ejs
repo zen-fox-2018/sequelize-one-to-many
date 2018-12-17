@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>School</title>
+</head>
+<body>
+  <div class="title">
+    <h1>All Student Data</h1>
+    <h2><a href="/student/add">Add Student Data</a></h2>
+  </div>
+  <div class="data">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+            <th>Option</th>
+        </tr>
+        <% student.forEach(function(student){%>
+        <tr>
+            <td><%= student.id %></td>
+            <td><%= student.firsName %></td>
+            <td><%= student.lastName %></td>
+            <td><%= student.email %></td> 
+            <td>
+                <a href="/student/<%= student.id %>/add-subject">Add Subject</a>
+            </td>
+              <td>
+              <a href="/student/edit/<%= student.id %>">Edit</a> | 
+              <a href="/student/delete/<%= student.id%>" onclick="return confirm('Delete this <%=route%>?')">Delete</a>
+              </td>      
+        </tr>
+        <%})%>
+      </table>
+  </div>
+</body>
+</html>
