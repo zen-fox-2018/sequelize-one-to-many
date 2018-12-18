@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Model = require('../models')
+const convertScore = require('../helpers/convert-score.js')
 
 router.get('/', (req, res) =>{
   Model.Subject
@@ -31,7 +32,7 @@ router.get('/:id/enrolled-student', (req, res) => {
     }
   })
   .then(data =>{
-    res.render('enrolled-students.ejs', {data})
+    res.render('enrolled-students.ejs', {data, convertScore})
     // res.send(data)
   })
   .catch(err =>{

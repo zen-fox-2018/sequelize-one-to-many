@@ -15,15 +15,18 @@
     <table>
       <tr>
         <th>Name</th>
-        <th>Score</th>
+        <th>Score(num)</th>
+        <th>Score(letter)</th>
       </tr>
       <% data.Students.forEach(element => { %>
         <tr>
           <td><%= element.first_name %> <%= element.last_name %></td>
           <% if(element.StudentSubject.score == null){ %>
             <td><a href="/subject/<%= element.StudentSubject.SubjectId %>/enrolled-student/give-score/<%= element.id%>"</a>Give Score</a></td>
+            <td></td>
           <% } else { %>
             <td><%= element.StudentSubject.score %></td>
+            <td><%= convertScore(element.StudentSubject.score) %></td>
           <% } %>
         </tr>
       <% }) %>
