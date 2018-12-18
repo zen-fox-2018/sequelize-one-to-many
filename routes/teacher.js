@@ -8,7 +8,7 @@ router.get('/', (req, res)=> {
     let err = req.query.err
     
     Model.Teacher.findAll({
-        include:[{model: Model.Subject , required: false}]
+        include:[{model: Model.Subject , required: false}] , order: [[ 'id', 'ASC' ]]
     })
     .then(dataAll => {
         res.render('teacher', {dataSend: dataAll, info:info, err:err} )

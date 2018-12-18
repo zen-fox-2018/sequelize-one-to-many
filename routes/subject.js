@@ -2,12 +2,13 @@ const express = require('express')
 const router = express.Router()
 const Model = require('../models')
 const getGrade = require('../helpers/getGrade')
+const getEnrolled = require('../helpers/getEnrolled')
 
 
 router.get('/', (req, res)=> {
     let info = req.query.info
     let err = req.query.err
-    Model.Subject.findAll({include: [{model: Model.Teacher, required:false}]})
+    Model.Subject.findAll({include: [{model: Model.Teacher, required:false}], order: [[ 'id', 'ASC' ]]})
     .then(dataSubject => {
         // res.send(dataSubject)
         res.render('subject' , {dataSend:dataSubject, info:info, err:err})
@@ -72,7 +73,7 @@ router.get('/:id/enrolled-students', (req, res) => {
     })
     .then(dataSubject => {
         // res.send(dataSubject)
-        res.render('subjectenrolled', {subject: dataSubject, getGrade:getGrade})
+        res.render('subjectenrolled', {subject: dataSubject, getGrade:getGrade , getEnrolled: getEnrolled})
     })
     .catch(err => res.send(err))
 }) 
@@ -94,7 +95,7 @@ router.get('/:id/give-score', (req, res)=> {
     .then(Subject => {
         res.render('formaddscore', {id:id, dataStudent:tempStudent, dataSubject: Subject })
     })
-
+    .catch(err => res.send(err))
 
     
 })

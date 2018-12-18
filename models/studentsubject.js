@@ -9,7 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     StudentId: DataTypes.INTEGER,
     SubjectId: DataTypes.INTEGER,
-    score: DataTypes.INTEGER
+    score: {
+      type: DataTypes.INTEGER,
+      validate : {
+        
+      }
+    }
   }, {});
   StudentSubject.associate = function(models) {
     // associations can be defined here

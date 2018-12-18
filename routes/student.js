@@ -5,7 +5,7 @@ router.get('/', (req, res)=> {
     let info = req.query.info
     let err = req.query.err
 
-    Model.Student.findAll() 
+    Model.Student.findAll({order: [[ 'id', 'ASC' ]]}) 
     .then(dataStudent=> {
         // res.send(dataStudent)
         res.render('student', {dataSend: dataStudent, info: info, err: err})

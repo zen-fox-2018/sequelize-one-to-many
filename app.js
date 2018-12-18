@@ -5,6 +5,7 @@ const Index = require('./routes/index')
 const Teacher = require('./routes/teacher')
 const Subject = require('./routes/subject')
 const Student = require('./routes/student')
+const User = require('./routes/user')
 
 app.set("view engine", "ejs")
 
@@ -14,6 +15,7 @@ app.use('/', Index)
 app.use('/teachers', Teacher)
 app.use('/subjects', Subject)
 app.use('/students', Student)
+app.use('/register', User)
 
 
 

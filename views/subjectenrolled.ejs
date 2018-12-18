@@ -25,16 +25,9 @@
             <tr>
               <td><%= `${dataStudent.firstName} ${dataStudent.lastName}` %></td>
           
-         
-          <% if(!dataStudent.StudentSubject.score) { %>
-            
-                <td> <a href="/subjects/<%= dataStudent.StudentSubject.id %>/give-score">Give Score</a></td>
-            
-          <% } else { %>
-            
-                <td><%=dataStudent.StudentSubject.score %></td>
-            
-            <% } %>
+        <td> <%- getEnrolled(dataStudent) %></td>
+
+          
             <td> <%= getGrade(dataStudent.StudentSubject.score) %></td>
          <% }) %>
        
