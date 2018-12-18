@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Model = require('../models')
+const getGrade = require('../helpers/getGrade')
 
 
 router.get('/', (req, res)=> {
@@ -71,14 +72,31 @@ router.get('/:id/enrolled-students', (req, res) => {
     })
     .then(dataSubject => {
         // res.send(dataSubject)
-        res.render('subjectenrolled', {subject: dataSubject})
+        res.render('subjectenrolled', {subject: dataSubject, getGrade:getGrade})
     })
     .catch(err => res.send(err))
 }) 
 
 router.get('/:id/give-score', (req, res)=> {
     let id = req.params.id
-    res.render('formaddscore', {id:id})
+    let tempStudentSubject = {}
+    let tempStudent = {}
+    Model.StudentSubject.find({where : {id: id}})
+    .then(StudentSubject => {
+        tempStudentSubject = StudentSubject
+        return Model.Student.find({where: {id:tempStudentSubject.StudentId}})
+
+    })
+    .then(Student => {
+        tempStudent = Student
+        return Model.Subject.find({where: {id:tempStudentSubject.SubjectId}})
+    })
+    .then(Subject => {
+        res.render('formaddscore', {id:id, dataStudent:tempStudent, dataSubject: Subject })
+    })
+
+
+    
 })
 
 router.post('/:id/give-score', (req,res)=> {
