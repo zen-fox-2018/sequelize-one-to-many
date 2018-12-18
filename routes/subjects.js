@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Model = require('../models');
+const scoreByLetter = require('../helpers/scoreByLetter');
 
 router.get('/', (req, res) => {
   Model.Subject.findAll({
@@ -34,7 +35,8 @@ router.get('/:id/enrolled-students', (req, res) => {
     // res.send(subject)
     res.render('subjectEnroll', {
       title: `${subject.subjectName}`,
-      subject : subject
+      subject : subject,
+      scoreByLetter : scoreByLetter
     })
   })
 

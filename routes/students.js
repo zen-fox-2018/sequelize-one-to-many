@@ -74,7 +74,7 @@ router.post('/:id/add-subject', (req, res) => {
   }
   Model.StudentSubject.create(newStudentSubject)
     .then((data) => {
-      res.send(data)
+      res.redirect(`/students/`)
     })
 
     .catch((err) => {
@@ -82,19 +82,19 @@ router.post('/:id/add-subject', (req, res) => {
     })
 })
 
-router.get('/subject', (req, res) =>{
-  Model.Student.findAll({
-    include: {
-      model: Model.Subject
-    }
-  })
-    .then((students) => {
-      res.send(students);
-    })
-
-    .catch((err) => {
-      res.send(err);
-    })
-})
+// router.get('/subject', (req, res) =>{
+//   Model.Student.findAll({
+//     include: {
+//       model: Model.Subject
+//     }
+//   })
+//     .then((students) => {
+//       res.send(students);
+//     })
+//
+//     .catch((err) => {
+//       res.send(err);
+//     })
+// })
 
 module.exports = router;
