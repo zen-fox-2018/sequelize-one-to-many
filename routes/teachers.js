@@ -52,13 +52,13 @@ router.post('/add', function(req, res) {
 
   Model.Teacher.create(obj)
   .then(data => {
-    console.log(req.body,'saved');
+    // console.log(req.body,'saved');
     res.redirect('/teachers');
   })
   .catch(err =>{
     // console.log('============',req.body);
-    console.log(err);
-    res.send('err')
+    // console.log(err);
+    res.send(err)
   })
 })
 
@@ -67,7 +67,7 @@ router.get('/edit/:id', function(req, res) {
   let dataSubject = null;
   let value = req.params.id;
   let item = null;
-  console.log(req.params.id);
+  // console.log(req.params.id);
   Model.Teacher.findOne({
     where : {
       id : req.params.id

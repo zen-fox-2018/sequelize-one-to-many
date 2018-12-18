@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Model = require('../models');
+const convertGrade = require('../helpers/convertGrade.js');
 
+//------------------list subject-----------------
 router.get('/', function (req,res) {
   let dataTeacher = null;
   let dataSubject = null
@@ -30,6 +32,7 @@ router.get('/', function (req,res) {
   })
 })
 
+//------------------add subject--------------------------
 router.get('/add', function(req, res) {
   res.render('addsubject.ejs')
 })
@@ -47,17 +50,18 @@ router.post('/add', function(req, res) {
   })
 })
 
+//--------------------edit subject-----------------------
 router.get('/edit/:id', function(req, res) {
   // res.render('editsubject.ejs')
   let value = req.params.id
-  console.log(req.params.id);
+  // console.log(req.params.id);
   Model.Subject.findOne({
     where : {
       id : req.params.id
     }
   })
   .then(item =>{
-    console.log(item);
+    // console.log(item);
     if(item != null){
       res.render('editsubject.ejs', {
       title : 'Edit Subject Data',
@@ -88,6 +92,7 @@ router.post('/edit/:id', function(req, res) {
   })
 })
 
+//---------------------delete subject-----------------
 router.get('/delete/:id', function(req, res) {
   Model.Subject.destroy(
     { where : {id : req.params.id}}
@@ -100,5 +105,68 @@ router.get('/delete/:id', function(req, res) {
   })
 })
 
+//------------------enroll student-----------------------
+router.get('/:id/enrolled-students', function(req,res) {
+  let subjectData = null;
+  let studentData = null;
+  Model.Subject.findOne({
+    where : {
+      id : req.params.id
+    },
+    include : [{
+      model : Model.Student
+    }]
+  })
+  .then(itemStudent =>{
+    if (itemStudent != null) {
+      res.render('enrolledStudents.ejs',{
+        title : itemStudent.subject_name,
+        data : itemStudent,
+        convertGrade : convertGrade
+      })
+    }
+    // res.send(itemStudent)
+  })
+  .catch(err =>{
+    res.send(err);
+  })
+})
+
+//------------------give score-------------------------
+router.get('/:id/give-score', function(req, res) {
+
+  Model.StudentSubject.findOne({
+    where : {
+      id : req.params.id
+    }
+  })
+  .then(dataScore =>{
+    res.render('giveScore.ejs', {
+      data : dataScore
+    })
+    // res.send(dataScore)
+  })
+  .catch(err =>{
+    res.send(err)
+  })
+})
+
+router.post('/:id/give-score', function(req, res) {
+  let score = req.body.score;
+  var obj = {
+    score : score
+  }
+  Model.StudentSubject.update(obj,
+    {
+      where : { id : req.params.id
+    }
+  })
+  .then(data => {
+    res.redirect('/subjects')
+  })
+  .catch(err => {
+    res.send(err)
+  })
+})
 
 module.exports = router;

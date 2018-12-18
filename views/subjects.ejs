@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+    <%- include('./partial/style.ejs') %>
+      <head>
+        <meta charset="utf-8">
+        <title></title>
+      </head>
+      <body>
+        <%- include('./partial/header.ejs') %>
     <h1 align="center"><%= title%></h1>
     <table align="center">
       <tr>
         <th> id </th>
         <th> Subject Name </th>
         <th> Teacher </th>
+        <th> Actions </th>
+        <th> options </th>
       </tr>
       <% dataSubject.forEach(itemSubject =>{ %>
         <tr>
@@ -24,6 +29,11 @@
                 <br>
               <% }})%>
           </ol>
+          </td>
+          <td>
+            <a href="/subjects/<%= itemSubject.id%>/enrolled-students">
+              <button type="button"> enrolled students </button>
+            </a>
           </td>
           <td>
             <a href="/subjects/edit/<%- itemSubject.id%>" ><button align="center">edit</button></a> |

@@ -4,6 +4,7 @@ const teacher = require('./routes/teachers.js');
 const subject = require('./routes/subjects.js');
 const student = require('./routes/students.js')
 
+
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: false}))
 

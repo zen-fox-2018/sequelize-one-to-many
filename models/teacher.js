@@ -23,8 +23,9 @@ module.exports = (sequelize, DataTypes) => {
             }
           })
           .then((data)=>{
-            if (data != null && data.dataValues.email == email)
-            throw new Error('email already registered');
+            if (data != null && data.dataValues.email == email){
+              throw new Error('email already registered')
+            };
           })
           .catch(err =>{
             // console.log(err);
