@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Enrolled Students</title>
+    <style>
+        table {
+            border: 1px solid rgb(0, 0, 0);
+            background: white;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid rgb(0, 0, 0);
+        }
+        th {
+            background: Yellow;
+        }
+        #Judul {
+            color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <h1> <%= title %> </h1>
+    <h5><a href="/subject">return to subject list</a></h5>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Score By Number</th>
+            <th>Score By Letter</th>
+        </tr>
+        <% studsEnrolled.forEach(e => { %>
+        <tr>
+            <td> <%= e.first_name + ' ' + e.last_name %> </td>
+            <% if(e.Student_Subject.Score == null) { %> 
+                <td> <a href="/subject/<%= e.Student_Subject.id %>/give-score"> Give Score </a> </td>
+            <% } else { %>
+                <td> <%= e["Student_Subject"]["Score"] %> </td>
+            <% } %>
+            <td> <%= ConvertGrade(e.Student_Subject.Score) %> </td>
+        </tr>
+        <% }) %>
+    </table>
+</body>
+</html>

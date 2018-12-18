@@ -50,13 +50,10 @@ router.get('/edit/:id', (req, res) => {
     let data = null
     Model.Teacher.findByPk(id)
     .then((theTeacher) => {
-        // console.log(theTeacher);
-        
         data = theTeacher
         return Model.Subject.findAll()
     })
     .then(findSubjectsName => {
-        // console.log(findSubjectsName)
         res.render('./edit_teacher.ejs', 
         {
             title: 'Edit Teacher Data',

@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Op = sequelize.Op
-  const Teacher = sequelize.define('Teacher', {
-    First_Name: DataTypes.STRING,
-    Last_Name: DataTypes.STRING,
-    Email:
+  const Student = sequelize.define('Student', {
+    first_name: DataTypes.STRING,
+    last_name: DataTypes.STRING,
+    email:
     {
       type: DataTypes.STRING,
       validate: {
@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         notEmpty: true,
         isUnique: function(email) {
-          return Teacher.findOne({
-            where: {Email: email , id: {[Op.ne] : this.id}}
+          return Student.findOne({
+            where: {email: email , id: {[Op.ne] : this.id}}
           })
-          .then(teachersMail => {
-            if (teachersMail) {
+          .then(studentsMail => {
+            if (studentsMail) {
               throw `Email is already been used`
             }
           })
@@ -28,11 +28,10 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    SubjectId: DataTypes.INTEGER
   }, {});
-  Teacher.associate = function(models) {
+  Student.associate = function(models) {
     // associations can be defined here
-    Teacher.belongsTo(models.Subject)
+    Student.belongsToMany(models.Subject, {through: models.Student_Subject})
   };
-  return Teacher;
+  return Student;
 };

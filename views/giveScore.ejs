@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Give Score</title>
+    <style>
+        table {
+            border: 1px solid rgb(0, 0, 0);
+            background: white;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid rgb(0, 0, 0);
+        }
+        th {
+            background: Yellow;
+        }
+        #Judul {
+            color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <h1> <%= title %> </h1>
+    <h5> <a href="/subject">return to subject list</a> </h5>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            <td> <%= data.first_name + ' ' + data.last_name %> </td>
+            <td><a href="">Give Score</a></td> 
+        </tr>
+    </table>
+    <form action="/students/<%= data.id %>/add-subject" method="POST">
+        <h5>Choose Subject</h5>
+        <select name="SubjectId">
+                <% subjects.forEach(sub => { %>
+                    <% if(sub.id == data.SubjectId) {%>
+                    <option value= "<%= sub.id %>" selected> <%= sub.Subject_Name %> </option>
+                    <% } else { %>
+                        <option value= "<%= sub.id %>"> <%= sub.Subject_Name %> </option>                        
+                    <% } %>
+                <% }) %>        
+        </select>
+        <input type="submit" value="Add Subject">
+    </form>
+    <br>
+    <br>
+</html>

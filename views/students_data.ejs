@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>All Subjects Data</title>
+    <title>All Students Data</title>
     <style>
         table {
             border: 1px solid rgb(0, 0, 0);
@@ -23,26 +23,24 @@
 <body>
     <%- include('./partials/navbar.ejs') %>
     <h1> <%= title %> </h1>
-    <h5><a href="/subject/add">Add Subject</a></h5>
+    <h5><a href="/students/add">Add Students Data</a></h5>
     <table>
         <tr>
             <th>id</th>
-            <th>Subject Name</th>
-            <th>Teacher</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
             <th>Actions</th>
+            <th>Options</th>
         </tr>
         <% allData.forEach(e => { %>
         <tr>
             <td> <%= e.id %> </td>
-            <td> <%= e.Subject_Name %> </td>
-            <td> 
-                <ol>
-                    <% e.Teachers.forEach(tchr => { %>
-                    <li> <%= tchr.First_Name + ' ' + tchr.Last_Name %> </li>
-                    <% }) %>
-                </ol> 
-            </td>
-            <td><a href="/subject/<%= e.id %>/enrolled-students">Enrolled Students</a> || <a href="/subject/delete/<%= e.id %>">Delete</a></td>
+            <td> <%= e.first_name %> </td>
+            <td> <%= e.last_name %> </td>
+            <td> <%= e.email %> </td>
+            <td><a href="/students/<%= e.id %>/add-subject">Add Subject</a></td>
+            <td><a href="/students/edit/<%= e.id %>">Edit</a> | <a href="/students/delete/<%= e.id %>">Delete</a></td>
         </tr>
         <% }) %>
     </table>
