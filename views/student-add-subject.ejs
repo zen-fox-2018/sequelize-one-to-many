@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Add Subject To Student</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+  <table>
+        <tr>
+            <td><b>First Name</b></td>
+            <td><%= data.first_name %></td>
+          </tr>
+          <tr>
+              <td><b>Last Name</b></td>
+              <td><%= data.last_name %></td>
+          </tr>
+          <tr>
+              <td><b>Email</b></td>
+              <td><%= data.email %></td>
+          </tr>
+          <tr>
+              <td><b>Subject</b></td>
+              <td>
+                  <select name = "SubjectId" >
+                      <% dataSubject.forEach(element =>{ %>
+                        <option value="<%= element.id%>"> <%= element.subject_name %></option>
+                      <% }) %>
+                    </select>
+              </td>
+            </tr>
+          </table>
+          <input type="submit" value="Submit">
+</body>
+</html>
