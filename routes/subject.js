@@ -40,13 +40,22 @@ router.get('/:id/enrolled-student', (req, res) => {
   })
 })
 
-router.get('/:id/give-score', (req,res)=> {
-  Model.Student.findOne({
-    where:{id:req.params.id},
+router.get('/:id/enrolled-student/give-score/:StudentId', (req,res)=> {
+  var dataSubject = null
+  Model.StudentSubject.findOne({
+    where:{SubjectId:req.params.id},
   })
   .then(data =>{
-    res.render('subject-give-score.ejs', {data})
+    // res.render('subject-give-score.ejs', {data})
     // res.send(data)
+
+    return Model.Student.findOne({
+      where:{id:req.params.StudentId}
+    })
+  })
+  .then(dataStudent => {
+    res.render('subject-give-score.ejs', {data:dataStudent})
+    // res.send(dataStudent)
   })
   .catch(err =>{
     console.log(err);
@@ -55,7 +64,7 @@ router.get('/:id/give-score', (req,res)=> {
   // res.render('subject-give-score.ejs')
 })
 
-router.post('/:id/give-score', (req, res) => {
+router.post('/:id/enrolled-student/give-score/:StudentId', (req, res) => {
   let objScore = {
     score:req.body.score
   }
@@ -63,10 +72,10 @@ router.post('/:id/give-score', (req, res) => {
   Model.StudentSubject
   .update(
     objScore,
-    {where: {StudentId:req.params.id}}
+    {where: {SubjectId:req.params.id, StudentId:req.params.StudentId}}
   )
   .then(data =>{
-    res.redirect('/subject/:id/give-score')
+    res.redirect('/subject')
   })
   .catch(err =>{
     console.log(err);

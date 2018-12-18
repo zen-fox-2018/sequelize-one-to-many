@@ -21,7 +21,7 @@
         <tr>
           <td><%= element.first_name %> <%= element.last_name %></td>
           <% if(element.StudentSubject.score == null){ %>
-            <td><a href="/subject/<%= element.id %>/give-score">Give Score</a></td>
+            <td><a href="/subject/<%= element.StudentSubject.SubjectId %>/enrolled-student/give-score/<%= element.id%>"</a>Give Score</a></td>
           <% } else { %>
             <td><%= element.StudentSubject.score %></td>
           <% } %>
