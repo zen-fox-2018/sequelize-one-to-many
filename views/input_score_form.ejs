@@ -26,7 +26,7 @@
 				<div class="main-login main-center">
 				<h5> <%= title %></h5>
 				<!-- <h5><a href="/students">show all data</a></h5> -->
-					<form class="" method="POST" action="/subject/ <%= stuSubId %> /give-score">
+					<form class="" method="POST" action="/subject/ <%= subId %> /give-score/ <%= allData.id %> ">
 						
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Name</label>
@@ -49,9 +49,6 @@
 						</div>
 
                         <input type="submit" value="Input Score">
-						<!-- <div class="form-group ">
-							<a href="#" target="_blank" type="submit" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</a>
-						</div> -->
 					</form>
 				</div>
 			</div>

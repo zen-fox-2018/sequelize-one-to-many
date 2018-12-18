@@ -63,8 +63,9 @@ router.get('/:id/enrolled-students', (req, res) => {
         res.render('./enrolled_students.ejs', 
         {
             title: subject.Subject_Name,
-            studsEnrolled: subject.Students,
-            ConvertGrade: ConvertGrade
+            studsEnrolled: subject.Students, //List student yang enroll certain subject
+            ConvertGrade: ConvertGrade, //helper
+            subData: subject
         })
     })
     .catch(err => {
@@ -72,28 +73,16 @@ router.get('/:id/enrolled-students', (req, res) => {
     })
 })
 
-router.get('/:id/give-score', (req, res) => {
-    let id = req.params.id
-    let studId = null
-    let subData = null;
-    Model.Student_Subject.findOne({
-        where: {id: id}
-    })
-    .then(allData => {
-        studId = allData.StudentId
-        return Model.Subject.findByPk(allData.SubjectId)
-    })
-    .then(subject => {
-        subData = subject
-        return Model.Student.findByPk(studId)
-    })
+router.get('/:id/give-score/:studId', (req, res) => {
+    let studId = req.params.studId
+    let subId = req.params.id
+    Model.Student.findByPk(studId)
     .then(student => {
         res.render('./input_score_form.ejs', 
         {
             title: 'Input Student Score',
             allData: student,
-            subData: subData,
-            stuSubId: id
+            subId: subId
         })
     })
     .catch(err => {
@@ -101,19 +90,13 @@ router.get('/:id/give-score', (req, res) => {
     })
 })
 
-router.post('/:id/give-score', (req, res) => {
-    // res.send(req.params.id)
-    // res.send(req.body.Score)
-    Model.Student_Subject.findByPk(req.params.id)
-    .then(subStudData => {
-        // res.send(subStudData)
-        let updateData = {
-            Score: req.body.Score
-        }
-        return Model.Student_Subject.update(updateData, {where: {id: req.params.id}})
-    })
+router.post('/:id/give-score/:studId', (req, res) => {
+   let updateData = {
+        Score: req.body.Score
+    }
+    Model.Student_Subject.update(updateData, {where: {SubjectId: req.params.id, StudentId: req.params.studId}})
     .then(() => {
-        res.redirect('/subject')
+        res.redirect(`/subject/${req.params.id.trim()}/enrolled-students`)
     })
     .catch(err => {
         res.send(err)

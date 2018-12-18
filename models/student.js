@@ -28,7 +28,13 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-  }, {});
+  }, {
+    uniqueKeys: {
+        actions_unique: {
+            fields: ['first_name']
+        }
+    }
+  });
   Student.associate = function(models) {
     // associations can be defined here
     Student.belongsToMany(models.Subject, {through: models.Student_Subject})

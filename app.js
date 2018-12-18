@@ -12,7 +12,7 @@ app.use('/subject', subject)
 app.use('/students', students)
 
 app.get('/', (req, res) => {
-    res.send('Welcome to Sekolah Halokes')
+    res.render('./homepage')
 })
 
 app.listen(port, function() {

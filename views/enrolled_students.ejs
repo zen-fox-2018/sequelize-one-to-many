@@ -32,8 +32,8 @@
         <% studsEnrolled.forEach(e => { %>
         <tr>
             <td> <%= e.first_name + ' ' + e.last_name %> </td>
-            <% if(e.Student_Subject.Score == null) { %> 
-                <td> <a href="/subject/<%= e.Student_Subject.id %>/give-score"> Give Score </a> </td>
+            <% if(e.Student_Subject.Score == null) { %>
+                <td> <a href="/subject/<%= subData.id %>/give-score/<%= e.id %>"> Give Score </a> </td>
             <% } else { %>
                 <td> <%= e["Student_Subject"]["Score"] %> </td>
             <% } %>
