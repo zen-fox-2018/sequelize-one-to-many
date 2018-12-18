@@ -1,0 +1,91 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Website CSS style -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Website Font style -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		<link rel="stylesheet" href="style.css">
+		<!-- Google Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+		<title>Admin</title>
+	</head>
+	<body>
+        <h1><%= title %></h1>
+		<div class="container">
+			<div class="row main">
+				<div class="main-login main-center">
+					<form class="" method="POST" action="/teacher/edit/<%= data.id %>">
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">First Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="First Name" id="first_name"  value= "<%= data.First_Name %>"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Last Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="Last Name" id="last_name"  value= "<%= data.Last_Name %>"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="Email" id="email"  value= "<%= data.Email %>"/>
+								</div>
+							</div>
+                        </div>
+
+                        <!-- <div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">SubjectId</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="SubjectId" id="email"  value= "<%= data.SubjectId %>"/>
+								</div>
+							</div>
+						</div> -->
+                        <h5>Subject</h5>
+                        <select name="SubjectId">
+                            <% subjects.forEach(sub => { %>
+                                <% if(sub.id == data.SubjectId) {%>
+                                <option value= "<%= sub.id %>" selected> <%= sub.Subject_Name %> </option>
+                                <% } else { %>
+                                    <option value= "<%= sub.id %>"> <%= sub.Subject_Name %> </option>                        
+                                <% } %>
+                            <% }) %>
+                        </select>
+                        <br>
+                        <br>
+                        <input type="submit" value="Edit Teacher">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

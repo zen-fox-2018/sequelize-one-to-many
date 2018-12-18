@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>All Students Data</title>
+    <style>
+        table {
+            border: 1px solid rgb(0, 0, 0);
+            background: white;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid rgb(0, 0, 0);
+        }
+        th {
+            background: Yellow;
+        }
+        #Judul {
+            color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/navbar.ejs') %>
+    <h1> <%= title %> </h1>
+    <h5><a href="/students/add">Add Students Data</a></h5>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+            <th>Options</th>
+        </tr>
+        <% allData.forEach(e => { %>
+        <tr>
+            <td> <%= e.id %> </td>
+            <td> <%= e.first_name %> </td>
+            <td> <%= e.last_name %> </td>
+            <td> <%= e.email %> </td>
+            <td><a href="/students/<%= e.id %>/add-subject">Add Subject</a></td>
+            <td><a href="/students/edit/<%= e.id %>">Edit</a> | <a href="/students/delete/<%= e.id %>">Delete</a></td>
+        </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
