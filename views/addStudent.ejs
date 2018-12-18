@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>challenge</title>
+    <%-include('./partials/head.ejs')%>
 </head>
 <body>
+    <%-include('./partials/navbar.ejs')%>
   <h1>ADD STUDENT</h1>
     <form action="/student/add" method="POST">
         First name:<br>
@@ -17,6 +18,7 @@
         <br><br>
         <input type="submit" value="ADD STUDENT">
         <br>     
-      </form>  
+      </form>
+  <%-include('./partials/footer.ejs')%>  
 </body>
 </html>

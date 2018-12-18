@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended:false}))
 
 
 app.get('/', function(req, res) {
-  res.send('CEK')
+  res.render('home.ejs')
 })
 
 

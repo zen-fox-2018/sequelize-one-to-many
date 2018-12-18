@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>School</title>
+  <%-include('./partials/head.ejs')%>
 </head>
 <body>
+    <%-include('./partials/navbar.ejs')%>
   <div class="title">
     <h1>All Teacher Data</h1>
     <h2><a href="/teacher/add">Add Teacher Data</a></h2>
@@ -37,5 +38,6 @@
         <%})%>
       </table>
   </div>
+  <%-include('./partials/footer.ejs')%>
 </body>
 </html>

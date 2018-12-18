@@ -5,7 +5,6 @@ const router = express.Router();
 router.get('/', function(req, res) {
   Model.Student.findAll()
   .then(function(student) {
-    // res.send(student)
     res.render('./student.ejs', {student:student, route:'student'})
   })
 
@@ -16,19 +15,16 @@ router.get('/', function(req, res) {
 })
 
 router.get('/:id/add-subject', function(req, res) {
-  // res.send(req.params.id)
   let id = req.params.id
   Model.Student.findOne({ include: [{model: Model.Subject}], where : {id : id}})
   .then(function(student) {
     Model.Subject.findAll()
       .then(function(subject){
-        // res.send(student)
         res.render('./StudentEditSubject', {student:student, subject:subject})
       })
       .catch(function(err) {
         res.send(err)
       })
-    
   })
   .catch(function(err) {
     res.send(err)

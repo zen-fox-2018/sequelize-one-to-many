@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>challenge</title>
+    <%-include('./partials/head.ejs')%>
 </head>
 <body>
+  <%-include('./partials/navbar.ejs')%>
   <h1>ADD <%= route.toUpperCase() %></h1>
     <form action="/<%= route %>/add" method="POST">
         First name:<br>
@@ -24,5 +25,6 @@
         <input type="submit" value="ADD <%= route.toUpperCase() %>">
         <br>     
       </form>  
+  <%-include('./partials/footer.ejs')%>
 </body>
 </html>

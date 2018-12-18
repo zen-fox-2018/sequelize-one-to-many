@@ -1,5 +1,6 @@
 const Model = require('../models')
 const express = require('express');
+const scoreByLetter = require('../helpers/scoreByLetter')
 const router = express.Router();
 
 router.get('/', function(req, res) {
@@ -80,9 +81,8 @@ router.get('/:id/enrolled-students', function(req, res) {
   let id = req.params.id
   Model.Subject.findOne({where: {id : id}, include: [{model : Model.Student}]})
   .then(function(subject) {
-    console.log(this)
     // res.send(subject)
-    res.render('enrolled-student', {subject: subject})
+    res.render('enrolled-student', {subject: subject, scoreByLetter : scoreByLetter})
   })
   .catch(function(err) {
     res.send(err)
