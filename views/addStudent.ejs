@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Student</title>
+        <%- include ./partials/style.ejs %>       
+    </head>
+    <body>
+            <%- include ./partials/header.ejs %>
+        <h1 >Add Student Data</h1>
+        <h4 ><a href = "/students"  >All student data</a></h4>
+        <form action="/students/add" method = "POST">
+            <label for= "first_name"><b>First Name</b></label><br>
+            <input size =50 type="text" name="first_name"  required><br>
+            <label for= "last_name"><b>Last Name</b></label><br>
+            <input size =50 type="text" name="last_name" required><br>
+            <label for= "email"><b>Email</b></label><br>
+            <input size =50 type="text" name="email"  required><br>
+            <!-- <label for="SubjectId"><b>Subject</b></label> -->
+            <br>
+
+            <button type= "submit" >Add Student</button>
+        </form>
+    </body>
+</html>

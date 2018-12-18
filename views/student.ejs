@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Student Data </title>
+    
+    <%- include ./partials/style.ejs %>   
+</head>
+<body>
+    <%- include ./partials/header.ejs %>
+    <h1 style="text-align: left; color: green">Students Data</h1>
+    <h3 style="text-align: left;"><a style="color: green;text-decoration: none" ><a href="/students/add">Add Student Data</a></h3>
+    
+    <table>
+        <tr>
+            <th>Id</th>            
+            <th >First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>         
+            <th>Actions</th>
+            <th>Options</th>
+            
+            <!-- <th>Options</th> -->
+        </tr>
+            <% data.forEach(allStudentData => {%>
+            <tr>
+                <td><%= allStudentData.id %></td>
+                <td><%= allStudentData.firstName %></td>
+                <td><%= allStudentData.lastName %></td>
+                <td><%= allStudentData.email %></td>
+                <td><a href="/students/<%= allStudentData.id %>/add-subject">Add Subject</a></td>            
+                <td><p><a href= "/students/edit/<%=allStudentData.id%>">Edit</a> | <a href = "/students/delete/<%=allStudentData.id%>" onclick = "return confirm('Delete this subject?')">Delete</a></p></td>
+            </tr>
+            <%})%>
+    </table>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register Page</title>
+        <%- include ./partials/style.ejs %>
+    </head>
+    <body>
+        <form action="/register" method="POST">
+            <label for= "username"><b>UserName :</b></label><br>
+            <input size =50 type="text" name="username"  required><br>
+            <label for= "password"><b>Password :</b></label><br>
+            <input size =50 type="password" name="password" required><br>
+            <select name="role">
+                <option value="teacher">Teacher</option>
+                <option value="academic">Academic</option>
+                <option value="headmaster">Headmaster</option>
+            </select>
+            <button type="submit">REGISTER !</button>
+        </form>
+    </body>
+</html>

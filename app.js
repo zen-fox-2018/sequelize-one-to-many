@@ -3,6 +3,8 @@ const app = express()
 // const Model = require('./models')
 const Teacher = require('./routes/teacher-r.js')
 const Subject = require('./routes/subject-r.js')
+const Student = require('./routes/student-r')
+const Register = require('./routes/register-r')
 
 app.set('view engine','ejs')
 
@@ -11,10 +13,12 @@ app.use(express.json())
 
 app.use('/teachers', Teacher)
 app.use('/subjects', Subject)
+app.use('/students', Student)
+app.use('/register', Register)
 
 
 app.get('/', (req,res)=>{
-    res.send('I love hacktiv8')
+    res.render('about.ejs')
 })
 
 

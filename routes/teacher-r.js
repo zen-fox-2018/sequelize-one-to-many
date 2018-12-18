@@ -57,6 +57,7 @@ router.get('/',(req,res) =>{
     })
     .then(allTeacherData=>{
         res.render('teacher.ejs', { data: allTeacherData })
+        // res.send(allTeacherData)
     })
     .catch(err=>{
         res.send(err)

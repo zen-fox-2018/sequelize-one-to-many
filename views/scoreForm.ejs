@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <title>Form Pengisian Skor Subjek <%= subject.subjectName %></title>
+    <%- include ./partials/style.ejs %>   
+</head>
+<body>
+        <%- include ./partials/header.ejs %>
+    <h1>Form Pengisian Skor Subjek <%= subject.subjectName %></h1>
+    <form action="/subjects/<%= konjungsi.id %>/give-score" method="POST">
+        <label for= "full_name"><b>Full Name</b></label><br>
+        <input size =50 type="text" name="full_name" value="<%= `${student.firstName} ${student.lastName}` %>"><br>
+        <label for= "score"><b>Score</b></label><br>
+        <input size=50 type="text" name="score" required><br><br>
+        <button type="submit">Add Score</button>
+    </form>
+    
+</body>
+</html>

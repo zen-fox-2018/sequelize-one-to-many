@@ -2,19 +2,10 @@
 <html>
     <head>
         <title>Add Teacher</title>
-        <style>
-                table {
-                    width: 90%;
-                }
-                table, th, td {
-                    text-align: center;
-                    border-bottom: 2px solid black;
-                    border-collapse: collapse;
-                    padding: 5px;
-                }        
-            </style>        
+        <%- include ./partials/style.ejs %>       
     </head>
     <body>
+            <%- include ./partials/header.ejs %>
         <h1 >Add Teacher Data</h1>
         <h4 ><a href = "/teachers"  >All teacher data</a></h4>
         <form action="/teachers/add" method = "POST">
