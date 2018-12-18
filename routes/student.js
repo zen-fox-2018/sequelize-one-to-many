@@ -76,7 +76,7 @@ router.post('/edit/:id', (req, res) =>{
 })
 
 router.get('/delete/:id', function(req, res){
-  Model.Teacher
+  Model.Student
   .destroy(
       {where:
           {id:req.params.id}

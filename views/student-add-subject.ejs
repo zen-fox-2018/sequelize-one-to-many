@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,31 +9,41 @@
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   <script src="main.js"></script>
 </head>
+
 <body>
   <table>
-        <tr>
-            <td><b>First Name</b></td>
-            <td><%= data.first_name %></td>
-          </tr>
-          <tr>
-              <td><b>Last Name</b></td>
-              <td><%= data.last_name %></td>
-          </tr>
-          <tr>
-              <td><b>Email</b></td>
-              <td><%= data.email %></td>
-          </tr>
-          <tr>
-              <td><b>Subject</b></td>
-              <td>
-                  <select name = "SubjectId" >
-                      <% dataSubject.forEach(element =>{ %>
-                        <option value="<%= element.id%>"> <%= element.subject_name %></option>
-                      <% }) %>
-                    </select>
-              </td>
-            </tr>
-          </table>
-          <input type="submit" value="Submit">
+    <tr>
+      <td><b>First Name</b></td>
+      <td>
+        <%= data.first_name %>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Last Name</b></td>
+      <td>
+        <%= data.last_name %>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Email</b></td>
+      <td>
+        <%= data.email %>
+      </td>
+    </tr>
+  </table>
+  <br>
+      <form action="/student/<%= data.id%>/add-subject" method="POST">
+      <label for="SubjectId">Subject</label><br>
+          <select name="SubjectId">
+            <% dataSubject.forEach(element =>{ %>
+            <option value="<%= element.id%>">
+              <%= element.subject_name %>
+            </option>
+            <% }) %>
+          </select>
+          <br><br>
+        <input type="submit" value="Submit">
+      </form>
 </body>
+
 </html>

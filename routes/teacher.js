@@ -69,9 +69,9 @@ router.get('/edit=:id', function(req, res){
 
 router.post('/edit=:id', function(req,res){
   let objTeacher = {
-      first_name: req.body['first_name'],
-      last_name: req.body['last_name'],
-      email: req.body['email'],
+    //   first_name: req.body['first_name'],
+    //   last_name: req.body['last_name'],
+    //   email: req.body['email'],
       SubjectId: req.body['SubjectId']
   }
 

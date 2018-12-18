@@ -15,6 +15,7 @@
       <th> Id </th>
       <th> Subject </th>
       <th> Teacher </th>
+      <th> Actions </th>
     </tr>
     <% data.forEach(element =>{%>
     <tr>
@@ -25,7 +26,8 @@
         <br>
             <%=index+1%>. <%= eTeacher.first_name %> <%= eTeacher.last_name %>
             <% }) %>
-        </td>
+      </td>
+      <td><a href="/subject/<%= element.id %>/enrolled-student">Enrolled Students</a></td>
     </tr>
     <% }) %>
   </table>
