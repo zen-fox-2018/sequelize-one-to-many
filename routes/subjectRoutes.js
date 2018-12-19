@@ -33,7 +33,7 @@ router.get('/add', function ( req, res ) {
 })
 
 router.post('/add', function ( req, res ) {
-  res.send(req.body)
+  // res.send(req.body)
   Model.Student.create({
     subjectName : req.body.subjectName
   })

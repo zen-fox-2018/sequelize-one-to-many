@@ -7,6 +7,7 @@ router.get('/', function( req, res ) {
 })
 
 router.post('/', function( req, res ) {
+  console.log(req.body);
   Model.User.create({
     username : req.body.username,
     password : req.body.password,
@@ -21,11 +22,3 @@ router.post('/', function( req, res ) {
 })
 
 module.exports= router
-
-// const crypto = require('crypto');
-
-// const secret = 'abcdefg';
-// const hash = crypto.createHmac('sha256', secret)
-//                    .update('I love cupcakes')
-//                    .digest('hex');
-// console.log(hash);
