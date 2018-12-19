@@ -7,29 +7,28 @@
 <body>
   <div class="w-50 container">
     <br>
-    <h1 align="center"><%= subjectName.subjectName%></h1>
+    <h1 align="center"><%= data.subjectName%></h1>
     <h3 align="center"><a href="/subjects">return to subject list</a></h3>
     <table class="table">
       <thead >
         <tr>
           <th>Name</th>
           <th>Score</th>
+          <th>Score Letter</th>
         </tr>
       </thead>
       <tbody>
-        <% data.forEach( a => { %>
+        <% data.Students.forEach( a => { %>
           <tr> 
-           <td> <%= a.Student.firstName + ' ' + a.Student.lastName %> </td>
-            <% if ( !a.score ) { %>
-             <td> <a href="/subjects/<%=a.SubjectId%>/give-score">Give Score</a></td>
+           <td> <%= a.firstName + ' ' + a.lastName %> </td>
+            <% if ( !a.StudentSubject.score ) { %>
+             <td> <a href="/subjects/<%= a.StudentSubject.id %>/give-score">Give Score</a></td>
             <% } else { %>
-             <td> <%= a.score %> </td>
+             <td> <%= a.StudentSubject.score %> </td>
+             <td> <%= functionScore(a.StudentSubject.score)%> </td>
+             <% }
+            }) %>
           </tr>
-            <% }
-        }) %>
-        <tr>
-          <td></td>
-        </tr>
       </tbody>
     </table>
   </div>

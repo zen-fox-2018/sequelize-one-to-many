@@ -9,39 +9,38 @@ router.get('/', function( req, res ) {
       res.render('student.ejs', { data : allStudent} )
     })
 })
-
-router.post('/', function( req, res ) {
-  if (req.body.delete) {
-    Model.Student.destroy( {where : { id : req.body.delete} } )
-      .then( deleted => {
-        res.redirect('/students')
-      })
-      .catch( err => {
-        res.send(err)
-      })
-  }
-})
-
-router.get('/add', function ( req, res ) {
-  Model.Subject.findAll()
-    .then( subjectData => {
-      res.render('addStudent.ejs', { subjData : subjectData } )
-    })
-})
-
-router.post('/add', function ( req, res ) {
-  // res.send(req.body)
-  Model.Student.create({
-      firstName : req.body.firstName,
-      lastName : req.body.lastName,
-      email : req.body.email
-    })
-    .then( created => {
-      res.redirect('/students/')
+router.get('/delete/:id', function( req, res ) {
+  // console.log(req.params.id, '============================')
+  Model.Student.destroy( {where : { id : req.params.id} } )
+    .then( deleted => {
+      res.redirect('/students')
     })
     .catch( err => {
       res.send(err)
     })
+})
+
+router.get('/add', function ( req, res ) {
+  Model.Subject.findAll()
+  .then( subjectData => {
+    res.render('addStudent.ejs', { subjData : subjectData } )
+  })
+})
+
+
+router.post('/add', function ( req, res ) {
+  // res.send(req.body)
+  Model.Student.create({
+    firstName : req.body.firstName,
+    lastName : req.body.lastName,
+    email : req.body.email
+  })
+  .then( created => {
+    res.redirect('/students')
+  })
+  .catch( err => {
+    res.send(err)
+  })
 })
 
 router.get('/edit/:id', function ( req, res ) {
@@ -73,7 +72,7 @@ router.post('/edit/:id', function ( req, res ) {
 router.get('/:id/add-subject', function ( req, res ) {
   Model.Student.findByPk(req.params.id)
     .then( student => {
-      Model.Subject.findAll()
+      return Model.Subject.findAll()
         .then( subject => {
           res.render('addStudentSubject.ejs', { data : student, subjData : subject } )
         })
@@ -94,11 +93,13 @@ router.post('/:StudentId/add-subject', function ( req, res ) {
     SubjectId : req.body.SubjectId
   })
     .then( created => {
-      res.send(created)
+      // res.send(created)
+      res.redirect('/students')
     })
     .catch( err => {
       res.send(err)
     })
 })
+
 
 module.exports = router

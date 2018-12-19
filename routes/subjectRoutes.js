@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Model = require('../models')
+const score = require('../helpers/scoreLetter')
 
 router.get('/', function ( req, res ) {
   Model.Subject.findAll({
@@ -46,69 +47,37 @@ router.post('/add', function ( req, res ) {
 
 router.get('/:id/enrolled-students', function ( req, res ) {
   // console.log('============', req.params.id)
-  Model.StudentSubject.findAll({
+  Model.Subject.findOne({
     include : [
       {
         model : Model.Student
       }
     ],
     where : { 
-      SubjectId : req.params.id
+      id : req.params.id
     }
   })
     .then( subjectData => {
-      Model.Subject.findByPk(req.params.id)
-        .then( subject => {
-            // res.send(subjectData)
-            res.render('subjectList.ejs', { data : subjectData, subjectName : subject } )
-        })
-        .catch( err => {
-          res.send(err)
-        })
+      // res.send(subjectData)
+      res.render('subjectList.ejs', { data : subjectData, functionScore : score } )
+      
     })
     .catch( err => {
       res.send(err)
     })
 })
 
-router.get('/:subjId/give-score', function ( req, res ) {
-  Model.StudentSubject.findAll({
-    include : [
-      {
-        model : Model.Student
-      }
-    ],
-    where : {
-      SubjectId : req.params.subjId
-    }
-  })
-    .then( studsubject => {
-      // res.send(studsubject)
-      Model.Subject.findByPk(req.params.subjId)
-        .then( subject => {
-          res.render('scoreForm.ejs', { data : studsubject, name : subject.subjectName } )
-        })
-    })
-    .catch( err => {
-      res.send(err)
-    })
+router.get('/:id/give-score', function ( req, res ) {
+    res.render('scoreForm.ejs', { id : req.params.id } )
 })
 
-// router.get('/', function( req, res ) {
-//   Model.Subject.findAll({
-//     include: [{// Notice `include` takes an ARRAY
-//     model: Model.Student
-//     }]
-//   })
-//     .then( allSubject => {
-//       // res.send(data)
-//       // res.render('subject.ejs', { data: allSubject } )
-//       res.send(allSubject)
-//     })
-//     .catch( err=> {
-//       res.send(err)
-//     })
-// })
-
-
+router.post('/:id/give-score', function ( req, res ) {
+  // res.send(req.body)
+  Model.StudentSubject.update({
+    score : req.body.score
+  }, { where : { id : req.params.id  } } )
+    .then( updated => {
+      res.redirect('/subjects')
+    })
+})
 module.exports = router

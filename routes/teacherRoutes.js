@@ -17,9 +17,8 @@ router.get('/', function(req, res) {
     })
 })
 
-router.post('/', function ( req, res ) {
-  // console.log(req.body)
-  Model.Teacher.destroy( { where : { id : req.body.delete}})
+router.get('/delete/:id', function ( req, res ) {
+  Model.Teacher.destroy( { where : { id : req.params.id}})
     .then( deleted => {
       res.redirect('/teachers')
     })
