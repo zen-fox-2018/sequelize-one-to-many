@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    
+<body>
+
+<%- include('./partials/navbar.ejs') %>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><a href="#"></a></p>
+      <p><a href="#"></a></p>
+      <p><a href="#"></a></p>
+    </div>
+    <div class="col-sm-8 text-left"> 
+      <h1>Add Subject to Student </h1>
+    
+
+<form action="/students/<%= tempId %>/add-subject" method="POST">
+    First name: 
+    <label><%= student.firstName %> </label>
+    <br>
+    Last name: 
+    <label><%= student.lastName %> </label>
+    <br>
+    Email: 
+    <label> <%= student.email %> </label>
+    <br>
+    Subject:<br>
+    <select name="SubjectId" >
+      <% subject.forEach(dataSubject => { %>
+        <option value="<%= dataSubject.id %>"> <%= dataSubject.subjectName %></option>
+      <% })%>
+    </select>
+    <br><br>
+    <input type="submit" value="Add Subject" onclick="return confirm('Are you sure to enroll?')">
+  </form> 
+    </div>
+    
+<%- include('./partials/footer.ejs') %>
+
+</body>
+</html>

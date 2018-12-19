@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    
+<body onload="loadData()">
+
+
+<%- include('./partials/navbar.ejs') %>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><a href="#"></a></p>
+      <p><a href="#"></a></p>
+      <p><a href="#"></a></p>
+    </div>
+    <div class="col-sm-8 text-left"> 
+      <h1>Edit Teacher Form </h1>
+    
+
+<form action="/teachers/edit/<%= tempId %>" method="POST">
+    First name:<br>
+    <input type="text" id="firstName" name="firstName" value="">
+    <br>
+    Last name:<br>
+    <input type="text" id="lastName" name="lastName" value="">
+    <br>
+    Email:<br>
+    <input type="text" id="email" name="email" value="">
+    <br>
+    SubjectID:<br>
+    <select name="SubjectId" id="SubjectId"  >
+      
+        <option selected="selected" value="0" >Subject</option>
+        <% subject.forEach(dataSubject => { %>
+          <option value="<%= dataSubject.id %>"> <%= dataSubject.subjectName %></option>
+        <% })%>
+      </select>
+    <br><br>
+    <input type="submit" value="Submit" onclick="return confirm('Are you sure to update data ?')">
+  </form> 
+  
+    </div>
+<script>
+  function loadData() {
+    let dataTeacher ="<%= teacher %>"
+    if(dataTeacher) {
+      document.getElementById("firstName").value = "<%= teacher.firstName %>"
+      document.getElementById("lastName").value = "<%= teacher.lastName %>"
+      document.getElementById("email").value = "<%= teacher.email %>"
+      document.getElementById("SubjectId").selectedIndex = "<%= teacher.SubjectId%>"
+    }
+  }
+</script>
+
+<%- include('./partials/footer.ejs') %>
+
+</body>
+</html>

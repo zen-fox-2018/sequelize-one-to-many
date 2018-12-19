@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    
+<body>
+
+<%- include('./partials/navbar.ejs') %>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><a href="#"></a></p>
+      <p><a href="#"></a></p>
+      <p><a href="#"></a></p>
+    </div>
+    <div class="col-sm-8 text-left"> 
+      <h1>Teacher</h1>
+      <center><a href="/teachers/add">Add Teacher</a></center>
+      <table style="width:100%"  border="1">
+        <tr>
+          <th>Teacher ID</th>
+          <th>Teacher First Name</th>
+          <th>Teacher Last Name</th> 
+          <th>Teacher Email</th>
+          <th>Teacher Subject</th>
+          <th>Option</th>
+        </tr>
+        <tr>
+          <strong><%= info %></strong>
+        </tr>
+        <tr>
+          <strong><%= err %></strong>
+        </tr>
+        <% dataSend.forEach(Data=> {%>
+            <tr>
+                <td><%= Data.id %> </td>
+                <td><%= Data.firstName %></td>
+                <td><%= Data.lastName %></td>
+                <td><%= Data.email %></td>
+                <td><% if(!Data.Subject) { %>
+                    <strong>unassigned</strong>
+                <% } 
+                  else { %>
+                    <%= Data.Subject.subjectName %>
+                 <% } %></td>
+                <td>
+                    <a href="/teachers/edit/<%=Data.id%>">Edit</a> | <a href="/teachers/delete/<%=Data.id%>"  onclick="return confirm('Are you sure to delete data ?')">Delete</a>
+                </td>
+            </tr>
+        <% }) %>
+      </table>
+     </div>
+
+     <%- include('./partials/footer.ejs') %>
+
+</body>
+</html>
