@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%-include('./partials/head.ejs')%>
+</head>
+<body>
+    <%-include('./partials/navbar.ejs')%>
+  <div class="title">
+    <h1>All Teacher Data</h1>
+    <h2><a href="/teacher/add">Add Teacher Data</a></h2>
+  </div>
+  <div class="data">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Option</th>
+        </tr>
+        <% teacher.forEach(function(data){%>
+        <tr>
+            <td><%= data.id %></td>
+            <td><%= data.firstName %></td>
+            <td><%= data.lastName %></td>
+            <td><%= data.email %></td> 
+            <% if (data.Subject == null) {%>
+              <td>unassigned</td>
+            <% }else if (data.Subject !== null ) { %>
+              <td><%= data.Subject.subjectName %></td> 
+            <%}%>
+              <td>
+              <a href="/teacher/edit/<%= data.id %>">Edit</a> | 
+              <a href="/teacher/delete/<%= data.id%>" onclick="return confirm('Delete this <%=route%>?')">Delete</a>
+              </td>      
+        </tr>
+        <%})%>
+      </table>
+  </div>
+  <%-include('./partials/footer.ejs')%>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('./partials/head.ejs')%>
+</head>
+<body>
+  <div class="title">
+    <h1><%= subject.subjectName %></h1>
+    <h4><a href="/Subject">Return to Subject List</a></h4>
+  </div>
+  <div class="data">
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Score by Number</th>
+            <th>Score by Letter</th>
+        </tr>
+        <% subject.Students.forEach(function(student){%>
+        <tr>
+            <td><%= student.firsName %> <%= student.lastName %></td>
+            <% if (student.SubjectStudent.score == null) { %>
+              <td> <a href="/subject/<%= student.id %>/give-score">Give Score</a> </td>
+          <% } else { %>
+            <td><%= student.SubjectStudent.score %></td>
+        <% } %>
+            <td><%= scoreByLetter(student.SubjectStudent.score) %></td>
+               
+        </tr>
+        <%})%>
+      </table>
+  </div>
+  <%-include('./partials/footer.ejs')%>
+</body>
+</html>

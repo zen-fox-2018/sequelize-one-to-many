@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('./partials/head.ejs')%>
+</head>
+<body>
+    <%-include('./partials/navbar.ejs')%>
+  <h1>ADD STUDENT</h1>
+    <form action="/student/add" method="POST">
+        First name:<br>
+        <input type="text" name="firstname">
+        <br>
+        Last name:<br>
+        <input type="text" name="lastname">
+        <br>
+        email:<br>
+        <input type="text" name="email">
+        <br><br>
+        <input type="submit" value="ADD STUDENT">
+        <br>     
+      </form>
+  <%-include('./partials/footer.ejs')%>  
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('./partials/head.ejs')%>
+</head>
+<body>
+    <%-include('./partials/navbar.ejs')%>
+  <h1>EDIT <%= route.toUpperCase() %></h1>
+    <form action="/teacher/edit/<%= teacher.id %>" method="POST">
+        First name:<br>
+        <input type="text" name="firstname" value = "<%= teacher.firstName%>" >
+        <br>
+        Last name:<br>
+        <input type="text" name="lastname" value = "<%= teacher.lastName%>" >
+        <br>
+        email:<br>
+        <input type="text" name="email" value = "<%= teacher.email%>" >
+        <br><br>
+        <select name="subject">
+            <% subject.forEach(function(subject) { %>
+              <% if (teacher.SubjectId == subject.id) { %>
+                <option selected value="<%= subject.id%>"><%= subject.subjectName%></option>
+              <%} else {%>
+                <option value="<%= subject.id%>"><%= subject.subjectName%></option>
+            <% }
+            })%>
+        </select>
+        <br><br>
+        <input type="submit" value="EDIT <%= route.toUpperCase() %>">
+      </form>  
+  <%-include('./partials/footer.ejs')%>
+</body>
+</html>

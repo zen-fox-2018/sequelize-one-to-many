@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('./partials/head.ejs')%>
+</head>
+<body>
+  <%-include('./partials/navbar.ejs')%>
+  <h1>ADD <%= route.toUpperCase() %></h1>
+    <form action="/<%= route %>/add" method="POST">
+        First name:<br>
+        <input type="text" name="firstname">
+        <br>
+        Last name:<br>
+        <input type="text" name="lastname">
+        <br>
+        email:<br>
+        <input type="text" name="email">
+        <br><br>
+        <select name="subject">
+            <% subject.forEach(function(subject) {%>
+              <option value="<%= subject.id%>"><%= subject.subjectName%></option>
+            <%})%>
+        </select>
+        <br><br>
+        <input type="submit" value="ADD <%= route.toUpperCase() %>">
+        <br>     
+      </form>  
+  <%-include('./partials/footer.ejs')%>
+</body>
+</html>
