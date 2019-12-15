@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Form Score Subject</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+</head>
+<body>
+  <br>
+  <br>
+  <div class="w-50 container">
+    <form action="/subjects/<%= id %>/give-score" method="POST">
+      <div class="form-group">
+        <h3><label for="Score">Score:</label> <br></h3>
+        <input class="form-control" type="text" name="score" id="score" placeholder="Enter Score">
+      </div>
+      <button type="submit" class="btn btn-dark" Value="Submit">Submit</button>
+    </form> 
+  </div>
+</body>
+</html>

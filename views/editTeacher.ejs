@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Teacher
+  </title>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+  <br>
+  <div class="w-50 container">
+    <form action="/teachers/edit/<%= data.id%>" method="POST">
+      <div class="form-group">
+        <h3><label for="firstName">First Name</label> <br></h3>
+        <input class="form-control" type="text" id="firstName" name="firstName" value="<%= data.firstName%>">
+      </div>
+      <div class="form-group">
+        <h3><label for="lastName">Last Name</label><br></h3>
+        <input class="form-control" type="text" id="lastName" name="lastName" value="<%= data.lastName%>">
+      </div>
+      <div class="form-group">
+        <h3><label for="email">Email</label><br></h3>
+        <input class="form-control" type="email" id="email" name="email" value="<%= data.email%>">
+      </div>
+      <div class="form-group">
+        <h3><label for="subject">Subjects</label><br></h3>
+        <select name="SubjectId" class="form-control">
+          <% subjData.forEach( a => {
+              if (a.id == data.SubjectId){ %>
+                <option selected value="<%= a.id%>"> <%= a.subjectName %> </option>
+              <% } else {
+                %> <option value="<%= a.id%>"> <%= a.subjectName %>  </option>
+              <% } 
+            }) %>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-dark" Value="Submit">Submit</button>
+    </form> 
+  </div>
+</body>
+
+</html>

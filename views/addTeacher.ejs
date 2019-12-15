@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Teacher
+  </title>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+  <br>
+  <div class="w-50 container">
+    <form action="/teachers/add" method="POST">
+      <div class="form-group">
+        <h3><label for="firstName">First Name</label> <br></h3>
+        <input class="form-control" type="text" name="firstName" id="firstName" placeholder="Enter Your First Name">
+      </div>
+      <div class="form-group">
+        <h3><label for="lastName">Last Name</label><br></h3>
+        <input class="form-control" type="text" name="lastName" id="lastName" placeholder="Enter Your Last Name">
+      </div>
+      <div class="form-group">
+        <h3><label for="email">Email</label><br></h3>
+        <input class="form-control" type="email" name="email" id="email" placeholder="Enter Your Email">
+      </div>
+      <div class="form-group">
+        <h3><label for="subject">Subjects</label><br></h3>
+        <select id="subjectName" name="subjectName" class="form-control">
+          <% data.forEach( a => {%>  
+          <option> <%= a.subjectName  %></option>
+          <% })%>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-dark" Value="Submit">Submit</button>
+    </form> 
+  </div>
+</body>
+
+</html>
