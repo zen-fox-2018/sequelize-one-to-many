@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Teacher</title>
+        <%- include ./partials/style.ejs %>       
+    </head>
+    <body>
+            <%- include ./partials/header.ejs %>
+        <h1 >Add Teacher Data</h1>
+        <h4 ><a href = "/teachers"  >All teacher data</a></h4>
+        <form action="/teachers/add" method = "POST">
+            <label for= "first_name"><b>First Name</b></label><br>
+            <input size =50 type="text" name="first_name"  required><br>
+            <label for= "last_name"><b>Last Name</b></label><br>
+            <input size =50 type="text" name="last_name" required><br>
+            <label for= "email"><b>Email</b></label><br>
+            <input size =50 type="text" name="email"  required><br>
+            <label for="SubjectId"><b>Subject</b></label><br>
+            <select name = "SubjectId">
+                    <% subjects.forEach(element=> { %>                             
+                        <option size =50  value='<%= element.id %>'> <%= element.subjectName %></option>
+                    <%  }) %>
+                </select> <br> <br>
+
+            <button type= "submit" >Add Teacher</button>
+        </form>
+    </body>
+</html>

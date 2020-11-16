@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Enrolled Student Data</title>
+        <%- include ./partials/style.ejs %>
+    </head>
+    <body>
+        <%- include ./partials/header.ejs %>
+            
+        <h1 ><%= subject.subjectName  %></h1>
+        <h4 ><a href = "/subjects"  >return to subject list</a></h4>
+        <table>
+                <tr>
+                    <th>Name</th>            
+                    <th>Score</th>                    
+                </tr>
+                    <% subject.Students.forEach(element => {%>
+                    <tr>
+                        <td><%= `${element.firstName} ${element.lastName}` %></td>
+                        <% if(!element.StudentSubject.score ) { %>
+                            <td><a href="/subjects/<%= element.StudentSubject.id %>/give-score">Give Score</a></td>
+                       <% } else { %>
+                        <td><%= convertGrade(element.StudentSubject.score) %></td>
+                    <%   } %>                        
+                    </tr>
+                    <%})%>
+            </table>
+    </body>
+</html>
