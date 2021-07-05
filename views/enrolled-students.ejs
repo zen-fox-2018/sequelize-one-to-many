@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>enrolled students</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+    <h1><%= data.subject_name%></h1>
+    <p><a href="/subject">return to subject list</a></p>
+
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Score(num)</th>
+        <th>Score(letter)</th>
+      </tr>
+      <% data.Students.forEach(element => { %>
+        <tr>
+          <td><%= element.first_name %> <%= element.last_name %></td>
+          <% if(element.StudentSubject.score == null){ %>
+            <td><a href="/subject/<%= element.StudentSubject.SubjectId %>/enrolled-student/give-score/<%= element.id%>"</a>Give Score</a></td>
+            <td></td>
+          <% } else { %>
+            <td><%= element.StudentSubject.score %></td>
+            <td><%= convertScore(element.StudentSubject.score) %></td>
+          <% } %>
+        </tr>
+      <% }) %>
+
+    </table>
+</body>
+</html>
